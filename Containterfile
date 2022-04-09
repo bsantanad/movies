@@ -1,0 +1,21 @@
+from fedora-minimal
+
+# copy web app /srv/expenses inside container
+COPY ./app /srv/movies
+WORKDIR /srv/movies
+
+# copy user files (name and hash password) to /userdb
+COPY ./users /userdb
+
+# create dir for database
+RUN mkdir /db
+
+# install dependencies
+RUN microdnf -y install python-devel
+
+RUN python -m ensurepip
+RUN pip install -r requirements.txt --src /usr/local/src
+
+RUN chmod +x ./start
+ENTRYPOINT ["./start"]
+
