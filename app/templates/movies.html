@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<div>
+<br>
+<form action="/movies/add" method='post'>
+    <input required="required" type="text" id="movie" name="movie">
+    <button type="submit">add</button>
+</form> 
+{% for movie in movies %}
+<p>
+    <span> {{movie}} </span>
+</p>
+{% endfor %}
+</div>
+{% endblock %}
