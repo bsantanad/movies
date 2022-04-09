@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<div>
+{% for movie in movies %}
+<p>
+    <span> {{movie}} </span>
+</p>
+{% endfor %}
+</div>
+{% endblock %}

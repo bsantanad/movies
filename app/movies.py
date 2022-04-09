@@ -73,5 +73,26 @@ def add_movie():
     fsdb.set(movie, False)
     return flask.redirect(flask.url_for('movies'))
 
+@app.route('/edit', methods = ['GET'])
+@flask_login.login_required
+def edit_movie():
+    movies_d = fsdb.get_as_dict()
+    tmp = []
+    for movie, _ in movies_d.items():
+        tmp.append(movie)
+    return flask.render_template('edit.html', movies = tmp)
+
+@app.route('/apple-touch-icon.png', methods = ['GET'])
+def apple_touch():
+    '''
+    pretty sure there is a better way to do this
+    '''
+    return flask.send_from_directory(
+        os.path.join(app.root_path, 'static'),
+        'movies.png',
+        mimetype='image/png'
+    )
+
+
 if __name__=="__main__":
     app.run(debug=True, host='0.0.0.0')
