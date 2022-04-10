@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import os
 import time
+import json
 
 import flask
 import flask_login
@@ -65,6 +66,15 @@ def movies():
         tmp.append(movie)
     return flask.render_template('movies.html', movies = tmp)
 
+@app.route('/edit', methods = ['GET'])
+@flask_login.login_required
+def edit():
+    movies_d = fsdb.get_as_dict()
+    tmp = []
+    for movie, _ in movies_d.items():
+        tmp.append(movie)
+    return flask.render_template('edit.html', movies = tmp)
+
 @app.route('/movies/add', methods = ['POST'])
 @flask_login.login_required
 def add_movie():
@@ -73,14 +83,29 @@ def add_movie():
     fsdb.set(movie, False)
     return flask.redirect(flask.url_for('movies'))
 
-@app.route('/edit', methods = ['GET'])
+@app.route('/movies/delete', methods = ['DELETE'])
+@flask_login.login_required
+def delete_movie():
+    try:
+        form = flask.request.get_json()
+        movie = form.get('movie', None)
+    except Exception:
+        return 'couldnt parse json', 400
+
+    fsdb.set(movie, None)
+    return 'ok', 200
+
+@app.route('/movies/edit', methods = ['PUT'])
 @flask_login.login_required
 def edit_movie():
-    movies_d = fsdb.get_as_dict()
-    tmp = []
-    for movie, _ in movies_d.items():
-        tmp.append(movie)
-    return flask.render_template('edit.html', movies = tmp)
+    try:
+        form = flask.request.get_json()
+        movie = form.get('movie', None)
+    except Exception:
+        return 'couldnt parse json', 400
+
+    fsdb.set(movie, True)
+    return 'ok', 200
 
 @app.route('/apple-touch-icon.png', methods = ['GET'])
 def apple_touch():

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<script src= {{url_for('static', filename='/js/movies.js')}}></script>
 {% endblock %}
 
 {% block body %}
@@ -8,6 +9,8 @@
 {% for movie in movies %}
 <p>
     <span> {{movie}} </span>
+    <button onclick="delete_movie('{{movie}}')"> 🗑️ </button>
+    <button onclick="put_movie('{{movie}}')">  ✅ </button>
 </p>
 {% endfor %}
 </div>
