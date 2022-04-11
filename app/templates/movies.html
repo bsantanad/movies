@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<script src= {{url_for('static', filename='/js/movies.js')}}></script>
 {% endblock %}
 
 {% block body %}
@@ -8,12 +9,18 @@
 <br>
 <form action="/movies/add" method='post'>
     <input required="required" type="text" id="movie" name="movie">
-    <button type="submit">add</button>
+    <button class="fake_bttn" type="submit">add</button>
 </form> 
 {% for movie in movies %}
 <p>
     <span> {{movie}} </span>
 </p>
 {% endfor %}
+<button class="fake_bttn" type="submit" onclick="toggle_visibility('watched')">more...</button>
+<div id="watched" style="visibility: hidden;">
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+    <h2> watched </h2>
+    <a href="/edit" class="fake_bttn">edit</a> 
+</div>
 </div>
 {% endblock %}
