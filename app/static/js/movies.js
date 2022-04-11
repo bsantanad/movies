@@ -8,24 +8,23 @@ function toggle_visibility(id) {
 
 function delete_movie(movie) {
     var request = new XMLHttpRequest();
-    request.open('DELETE', '/movies/delete', true);
+    request.open('DELETE', '/movies/delete', false);
     request.setRequestHeader(
         'Content-Type', 
         'application/json;charset=UTF-8'
     );
     request.send(JSON.stringify({'movie': movie}));
-    alert(movie + ' deleted');
-    window.location.href = '/movies'
+    window.location.reload();
 }
 
 function put_movie(movie) {
     var request = new XMLHttpRequest();
-    request.open('PUT', '/movies/edit', true);
+    request.open('PUT', '/movies/edit', false);
     request.setRequestHeader(
         'Content-Type', 
         'application/json;charset=UTF-8'
     );
     request.send(JSON.stringify({'movie': movie}));
     alert(movie + ' updated');
-    window.location.href = '/movies'
+    window.location.reload();
 }
