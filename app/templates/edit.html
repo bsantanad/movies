@@ -13,5 +13,15 @@
     <button onclick="put_movie('{{movie}}')">  ✅ </button>
 </p>
 {% endfor %}
+{% for movie in watched %}
+<p>
+    <span style='color:green;'> {{movie}} </span>
+    <button onclick="delete_movie('{{movie}}')"> 🗑️ </button>
+</p>
+{% endfor %}
+{% if movies|length < 1 %}
+<br>
+{% endif %}
+<a href="/movies" class="fake_bttn">back</a>
 </div>
 {% endblock %}

@@ -25,6 +25,5 @@ function put_movie(movie) {
         'application/json;charset=UTF-8'
     );
     request.send(JSON.stringify({'movie': movie}));
-    alert(movie + ' updated');
     window.location.reload();
 }
