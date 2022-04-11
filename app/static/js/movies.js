@@ -14,8 +14,8 @@ function delete_movie(movie) {
         'application/json;charset=UTF-8'
     );
     request.send(JSON.stringify({'movie': movie}));
-    sleep(3000);
-    window.location.reload();
+    alert(movie + ' deleted');
+    window.location.href = '/movies'
 }
 
 function put_movie(movie) {
@@ -26,10 +26,6 @@ function put_movie(movie) {
         'application/json;charset=UTF-8'
     );
     request.send(JSON.stringify({'movie': movie}));
-    sleep(3000);
-    window.location.reload();
-}
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    alert(movie + ' updated');
+    window.location.href = '/movies'
 }
