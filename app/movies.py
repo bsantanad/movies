@@ -61,19 +61,37 @@ def login():
 @flask_login.login_required
 def movies():
     movies_d = fsdb.get_as_dict()
-    tmp = []
-    for movie, _ in movies_d.items():
-        tmp.append(movie)
-    return flask.render_template('movies.html', movies = tmp)
+    unseen = []
+    watched = []
+    for movie, status in movies_d.items():
+        if status: #this means its already watched
+            watched.append(movie)
+            continue
+        unseen.append(movie)
+
+    return flask.render_template(
+        'movies.html',
+        movies = unseen,
+        watched = watched,
+    )
 
 @app.route('/edit', methods = ['GET'])
 @flask_login.login_required
 def edit():
     movies_d = fsdb.get_as_dict()
-    tmp = []
-    for movie, _ in movies_d.items():
-        tmp.append(movie)
-    return flask.render_template('edit.html', movies = tmp)
+    unseen = []
+    watched = []
+    for movie, status in movies_d.items():
+        if status: #this means its already watched
+            watched.append(movie)
+            continue
+        unseen.append(movie)
+
+    return flask.render_template(
+        'edit.html',
+        movies = unseen,
+        watched = watched,
+    )
 
 @app.route('/movies/add', methods = ['POST'])
 @flask_login.login_required

@@ -10,17 +10,25 @@
 <form action="/movies/add" method='post'>
     <input required="required" type="text" id="movie" name="movie">
     <button class="fake_bttn" type="submit">add</button>
-</form> 
+</form>
 {% for movie in movies %}
 <p>
     <span> {{movie}} </span>
 </p>
 {% endfor %}
+{% if movies|length < 1 %}
+<br>
+{% endif %}
 <button class="fake_bttn" type="submit" onclick="toggle_visibility('watched')">more...</button>
 <div id="watched" style="visibility: hidden;">
     <hr style="height:2px;border-width:0;color:gray;background-color:gray">
     <h2> watched </h2>
-    <a href="/edit" class="fake_bttn">edit</a> 
+    {% for movie in watched %}
+    <p>
+        <span style="color:green;text-decoration: line-through;"> {{movie}} </span>
+    </p>
+    {% endfor %}
+    <a href="/edit" class="fake_bttn">edit</a>
 </div>
 </div>
 {% endblock %}
