@@ -4,14 +4,12 @@
 {% endblock %}
 
 {% block body %}
-<br>
-<div>
+<div class="center">
 <form action='/login' method='post'>
   <input type="text" placeholder="user" name="username" required>
   <br>
   <input type="password" placeholder="passwd" name="passwd" required>
-  <br>
-  <button type="submit">login</button>
+  <button class="login" type="submit">login</button>
 </form>
 </div>
 {% endblock %}

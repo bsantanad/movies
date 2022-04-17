@@ -1,8 +1,11 @@
 function toggle_visibility(id) {
-    if (document.getElementById(id).style.visibility == 'hidden') {
+    if (document.getElementById(id).style.visibility == 'hidden' ||
+        document.getElementById(id).style.display == 'none') {
         document.getElementById(id).style.visibility = 'visible';
+        document.getElementById(id).style.display= 'contents';
     }else{
         document.getElementById(id).style.visibility = 'hidden';
+        document.getElementById(id).style.display= 'none';
     }
 }
 

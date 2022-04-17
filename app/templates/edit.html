@@ -9,14 +9,14 @@
 {% for movie in movies %}
 <p>
     <span> {{movie}} </span>
-    <button onclick="delete_movie('{{movie}}')"> 🗑️ </button>
-    <button onclick="put_movie('{{movie}}')">  ✅ </button>
+    <button style="background-color:rgb(255, 59, 48);" onclick="delete_movie('{{movie}}')"> - </button>
+    <button style="background-color:rgb(48, 219, 91);" onclick="put_movie('{{movie}}')"> ✓ </button>
 </p>
 {% endfor %}
 {% for movie in watched %}
 <p>
     <span style='color:green;'> {{movie}} </span>
-    <button onclick="delete_movie('{{movie}}')"> 🗑️ </button>
+    <button style="background-color:rgb(255, 59, 48);" onclick="delete_movie('{{movie}}')"> - </button>
 </p>
 {% endfor %}
 {% if movies|length < 1 %}

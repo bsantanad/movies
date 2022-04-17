@@ -1,21 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <title>movies</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- css -->
+  <meta name="viewport" content="width=device-width, inital-scale=1.0">
+  <title> bsantanad.com </title>
+  <meta name="description" content="movie list">
   <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
   {% block head %}{% endblock %}
 </head>
-    <header>
-      <nav>
-        <a href="./">
-            movies.bsantanad.com
-        </a>
-      </nav>
-    </header>
-  <body>
+<body>
+  <header>
+    <h1> m<span style="color:rgb(175, 82, 222);">o</span>v<span style="color:rgb(52, 199, 89);">i</span><span style="color:rgb(255, 69, 58);">e</span>s </h1>
+    <hr>
+  </header>
     {% block body %}{% endblock %}
-  </body>
+</body>
 </html>
